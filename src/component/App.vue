@@ -1,6 +1,8 @@
 <template>
     <div>
         {{val}}
+
+        <router-view></router-view>
     </div>
 </template>
 
