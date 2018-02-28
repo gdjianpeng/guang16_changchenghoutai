@@ -1,26 +1,55 @@
 <template>
-    <div>
-        <!-- 公共头部 -->
-        <app-header></app-header>
-        <!-- 公共左侧 -->
-        <app-aside></app-aside>
-        <!-- 变化的后台管理子页面 -->
-        <router-view></router-view>
+    <div class="admin">
+        <el-container>
+            <!-- 公共头部 -->
+            <el-header>Header</el-header>
+
+            <el-container class="admin_content">
+                <!-- 公共左侧 -->
+                <el-aside width="200px">Aside</el-aside>
+                <!-- 变化的后台管理子页面 -->
+                <el-main>
+                    <!-- <router-view></router-view> -->
+                    qwertyui
+                </el-main>
+            </el-container>
+        </el-container>
     </div>
 </template>
 
 <script>
-import Header from '../subcom/Header.vue'
-import Aside from '../subcom/Aside.vue'
+import Header from "../subcom/Header.vue";
+import Aside from "../subcom/Aside.vue";
 export default {
-    //注册子组件
-    components: {
-        appHeader:Header,
-        appAside:Aside
-    }
+  //注册子组件
+  components: {
+    appHeader: Header,
+    appAside: Aside
+  }
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    .admin {
+        height: 100%;
+        color: cornflowerblue;
+        .el-header {
+            line-height: 60px;
+            background-color: red;
+        }
+        .el-container {
+            height: 100%;
+        }
+        // &在less中是对上级选择器的引用, 书写方便
+        &._content{
+             height: 100%;
+        }
+       .el-aside {
+           background-color: yellow;
+        }
+        .el-main{
+            background-color: rgb(67, 241, 233);
+        }
 
+    }
 </style>
