@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"webpack-dev-server --open",
+    "dev": "webpack-dev-server --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -30,6 +30,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.2.0",
+    "normalize.css": "^8.0.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
