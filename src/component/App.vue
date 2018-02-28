@@ -1,9 +1,9 @@
 
 <template>
-  <div>
+
  <!-- 登陆与后台管理页面互相切换 -->
    <router-view></router-view>
-  </div>
+
 </template>
 
 
