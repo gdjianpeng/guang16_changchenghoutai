@@ -40,17 +40,12 @@ export default {
   methods: {
     login() {
       // post请求的第二个参数是发送的数据, 这里直接把data里的表单对象传过去
-<<<<<<< HEAD
       this.$http.post(this.$api.login, this.ruleForm2).then((res) => {
           if(res.data.status==0){
               this.$alert("登陆成功");
           }else{
               this.$alert(res.data.message)
           }
-=======
-      this.$http.post(this.$api.login, this.ruleForm2).then(() => {
-        this.$alert("登陆成功");
->>>>>>> 2ec595e3062efbb045327f95377f43c31feddc95
       });
     },
     // 登陆按钮方法
