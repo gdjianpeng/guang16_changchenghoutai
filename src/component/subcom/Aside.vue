@@ -13,7 +13,8 @@
                     <span>{{ item.title }}</span>
                 </template>
                 <!-- 菜单list, 遍历当前菜单的chidren拿数据 -->
-                <el-menu-item index="1-1" v-for="subitem in item.chidren" :key="subitem.title">
+                <!-- <el-menu-item index="1-1" v-for="subitem in item.chidren" :key="subitem.title"> -->
+                    <el-menu-item  v-for="subitem in item.chidren" :key="subitem.title" :index="subitem.title">
                     <router-link :to="subitem.path">{{ subitem.title }}</router-link>
                 </el-menu-item>
 
