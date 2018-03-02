@@ -1,6 +1,7 @@
  // 导出域名
 
-export const domain = 'http://157.122.54.189:9095'; 
+// export const domain = 'http://157.122.54.189:9095'; 
+export const domain = 'http://localhost:8899'; 
  // 默认导出整个接口配
 
 export default { // 账号管理

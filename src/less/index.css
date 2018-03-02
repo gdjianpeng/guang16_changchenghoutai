@@ -5,4 +5,8 @@ body {
 .login label {
   color: #fff;
 }
+a {
+  text-decoration: none;
+  color: #fff;
+}
 /*# sourceMappingURL=./index.css.map */

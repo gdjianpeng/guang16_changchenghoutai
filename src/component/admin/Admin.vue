@@ -38,7 +38,7 @@ export default {
         color: cornflowerblue;
         .el-header {
             line-height: 60px;
-            background-color: red;
+            // background-color: red;
         }
         .el-container {
             height: 100%;
@@ -48,7 +48,7 @@ export default {
              height: 100%;
         }
        .el-aside {
-           background-color: yellow;
+           background-color: #545c64;
         }
         .el-main{
             background-color: rgb(67, 241, 233);
