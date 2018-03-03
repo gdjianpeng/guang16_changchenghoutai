@@ -9,7 +9,7 @@
             <el-container class="admin_content">
                 <!-- 公共左侧 -->
                 <el-aside width="200px">
-                     <app-aside></app-aside>
+                    <app-aside></app-aside>
                 </el-aside>
                 <!-- 变化的后台管理子页面 -->
                 <el-main>
@@ -32,27 +32,32 @@ export default {
 };
 </script>
 
+
 <style scoped lang="less">
     .admin {
-        height: 100%;
-        color: cornflowerblue;
-        .el-header {
-            line-height: 60px;
-            // background-color: red;
-        }
-        .el-container {
-            height: 100%;
-        }
-        // &在less中是对上级选择器的引用, 书写方便
-        &._content{
-             height: 100%;
-        }
-       .el-aside {
-           background-color: #545c64;
-        }
-        .el-main{
-            background-color: rgb(67, 241, 233);
-        }
-
+    height: 100%;
+    color: cornflowerblue;
+    .el-header {
+        line-height: 60px;
+        // background-color: red;
     }
+    .el-container {
+        height: 100%;
+    }
+    // &在less中是对上级选择器的引用, 书写方便
+    &._content {
+        height: 100%;
+    }
+    .el-aside {
+        background-color: #545c64;
+        //    background-color: skyblue;
+    }
+    .el-main {
+        // background-color: rgb(67, 241, 233);
+    }
+    .el-header {
+        background-color: #fafafa;
+    }
+    }
+
 </style>
