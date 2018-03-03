@@ -19,13 +19,13 @@
 
     <!-- 大表格 -->
     <!-- data属性用来配置表格数据  -->
-    <el-table ref="multipleTable" :data="tableData3" style="width: 100%" @selection-change="change">
+    <el-table ref="multipleTable" :data="tableData3" style="width: 100%" @selection-change="change" height="420px">
 
       <!-- type为selection, 即多选框 -->
       <el-table-column type="selection" width="55"></el-table-column>
 
       <!-- label用来设置当前列的表头 -->
-      <!-- 里面的template用来自定义表格中的内容与数据, 相比较prop属性的方式, 更加灵活, 可以对数据进行标签包裹 -->
+      <!-- 里面的template用来自定义表格中的内容与数据, 相比较prop属性的方式, 更加灵活, 可以对数据进行标签包裹-->
       <el-table-column label="标题">
         <template slot-scope="scope">
 
@@ -72,6 +72,12 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- 分页 -->
+    <!-- total用来设定数据总数, current-page用来设定当前页, page-size用来设定当前每页数量  -->
+    <el-pagination class="block" :total="apiQuery.total" :current-page="apiQuery.pageIndex" :page-size="apiQuery.pageSize" :page-sizes="[2, 4, 6, 8]" @size-change="handleSizeChange" @current-change="handleCurrentChange" layout="total, sizes, prev, pager, next, jumper">
+    </el-pagination>
+
   </div>
 </template>
 
@@ -81,9 +87,10 @@ export default {
     return {
       // 搜索
       apiQuery: {
-        pageIndex: 1,
-        pageSize: 10,
-        searchvalue: ""
+        pageIndex: 1,        
+        pageSize: 6,
+        searchvalue: '',
+        total: 0
       },
 
       // 被选中的商品数据
@@ -110,14 +117,14 @@ export default {
     getGoodsData() {
       // 这个接口需要pageIndex指定页, pageSize指定每页数量, searchvalue用于商品搜索
       //   this.$http.get(this.$api.gsList + "?pageIndex=1&pageSize=10").then(res => {
-      let api = `${this.$api.gsList}?pageIndex=${
-        this.apiQuery.pageIndex
-      }&pageSize=${this.apiQuery.pageSize}
+      let api = `${this.$api.gsList}?pageIndex=${this.apiQuery.pageIndex}&pageSize=${this.apiQuery.pageSize}
       &searchvalue=${this.apiQuery.searchvalue}`;
       this.$http.get(api).then(res => {
         if (res.data.status == 0) {
           this.tableData3 = res.data.message; // 把请求回来的数据覆盖原data数量, 表格就会自动刷新
-          // console.log(res.data.message[0].imgurl);
+
+          // 把后端接口返回的数量总量赋值给分页组件使用
+          this.apiQuery.total = res.data.totalcount;
         }
       });
     },
@@ -127,7 +134,20 @@ export default {
       document.querySelector(".el-checkbox__original").click();
     },
 
-    // 监听多选框状态的变化，参数可以拿到被选的商品数据
+    // 监听页码变更事件
+    handleCurrentChange(page) {
+      this.apiQuery.pageIndex = page; // 接收到新的页面, 赋值给data里的数量, 分页组件就会刷新视图
+      this.getGoodsData(); // 除了分页组件视图要变更, 表格也要重新获取数据渲染
+    },
+
+    // 监听每页数量变更事件
+    handleSizeChange(size) {
+      this.apiQuery.pageSize = size; // 接收到新的每页数量, 赋值给data里的数量, 分页组件就会刷新视图
+      this.getGoodsData(); // 除了分页组件视图要变更, 表格也要重新获取数据渲染
+      // 监听多选框状态的变化，参数可以拿到被选的商品数据
+    },
+
+
     change(selection) {
       this.selectedGoodsList = selection;
     },
@@ -174,11 +194,12 @@ export default {
     width: 200px;
   }
   // 添加icon点亮的样式
-
 }
-  [class^=el-icon].active {
-    color: #000;
-    font-weight: bold;
-  }
-
+[class^="el-icon"].active {
+  color: #000;
+  font-weight: bold;
+}
+.block {
+  margin-top: 10px;
+}
 </style>
